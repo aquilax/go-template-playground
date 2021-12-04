@@ -4,6 +4,7 @@
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>Go Text Template Playground</title>
+    <link rel="manifest" href="/manifest.json">
     <style>
         body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'}
         header {display: flex}
@@ -53,6 +54,13 @@
     </footer>
 <script src="tgo.js"></script>
 <script>
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+
     window.renderTemplate = window.renderTemplate || function () { return ['', 'Loading...'] };
     const ttemplate = document.getElementById('template');
     const tdata = document.getElementById('data');

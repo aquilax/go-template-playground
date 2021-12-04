@@ -1,0 +1,23 @@
+{
+  "name": "tgo",
+  "version": "1.0.0",
+  "description": "Browser Go Template Playground",
+  "main": "index.js",
+  "scripts": {
+    "build": "workbox generateSW"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aquilax/go-template-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aquilax/go-template-playground/issues"
+  },
+  "homepage": "https://github.com/aquilax/go-template-playground#readme",
+  "devDependencies": {
+    "workbox-cli": "^6.4.2"
+  }
+}
