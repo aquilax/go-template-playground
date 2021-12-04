@@ -8,13 +8,17 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
         }
-        textarea {width: 100%; height : 20em}
+        h2 {margin-bottom: 0;}
+        textarea {width: 98%; height : 20em}
+        #error { background: rgba(255, 0, 0, .10)}
     </style>
 </head>
 <body>
-    <h1>Go Text Template Playground</h1>
+    <header>
+        <h1>Go Text Template Playground</h1>
+    </header>
     <hr/>
-    <div class="grid">
+    <main class="grid">
         <div class="panel">
             <h2>JSON</h2>
             <textarea id="data" placeholder="JSON encoded data">{"name": "Go Text Template Playground"}</textarea>
@@ -31,7 +35,11 @@
             <h2>Errors</h2>
             <textarea id="error" placeholder="Errors" readonly></textarea>
         </div>
-    </div>
+    </main>
+    <hr/>
+    <footer>
+        Source code: <a href="https://github.com/aquilax/go-template-playground">https://github.com/aquilax/go-template-playground</a>
+    </footer>
 <script>
     const ttemplate = document.getElementById('template');
     const tdata = document.getElementById('data');
