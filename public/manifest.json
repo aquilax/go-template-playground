@@ -1,27 +1,28 @@
 {
-    "short_name" : "Go Text Template",
-    "name" : "Go Text Template Playground",
-    "icons": [
-        {
-          "src": "/images/icons-vector.svg",
-          "type": "image/svg+xml",
-          "sizes": "512x512"
-        },
-        {
-          "src": "/images/icons-192.png",
-          "type": "image/png",
-          "sizes": "192x192"
-        },
-        {
-          "src": "/images/icons-512.png",
-          "type": "image/png",
-          "sizes": "512x512"
-        }
-      ],
-    "start_url" : "/",
-    "background_color" : "#ffffff",
-    "display" : "browser",
-    "scope" : "/",
-    "theme_color" : "#ffffdd",
-    "description" : "Go Text Template Playground is a sandbox for quick go text templates prototyping."
+  "id": "/",
+  "short_name": "Go Text Template",
+  "name": "Go Text Template Playground",
+  "icons": [
+    {
+      "src": "/images/icons-vector.svg",
+      "type": "image/svg+xml",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ffffdd",
+  "description": "Go Text Template Playground is a sandbox for quick go text templates prototyping."
 }
