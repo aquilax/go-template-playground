@@ -19,6 +19,7 @@ func main() {
 	js.Global.Get("window").Set("decompress", decompress)
 }
 
+// renders template
 func render(t, data string) (string, string) {
 	var v interface{}
 	var err error

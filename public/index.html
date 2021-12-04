@@ -10,10 +10,12 @@
         header {display: flex}
         .extra {display:grid; margin: auto;}
         header h1 {flex-grow: 1;}
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+        @media  (min-width: 768px) {
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
         }
         h2 {margin-bottom: 0;}
         textarea {width: 98%; height : 20em; background: #ffffdd;}

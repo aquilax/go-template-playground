@@ -1,14 +1,14 @@
 .PHONY: icons
 
-
-GOPHERJS_GOROOT="$(go env GOROOT)"
+SHELL := /bin/bash
 
 SRC_IMG = ./raw
-
 BUILD = ./public
 BUILD_IMAGES = $(BUILD)/images
 resolutions := 192 512
 ALL_ICONS := $(foreach resolution, $(resolutions), $(BUILD_IMAGES)/icons-$(resolution).png)
+
+all: icons public/tgo.js public/sw.js
 
 icons: public/images/icons-vector.svg $(ALL_ICONS)
 
@@ -21,5 +21,5 @@ public/images/icons-vector.svg: $(SRC_IMG)/icon.svg
 public/tgo.js: gopherjs/tgo.go
 	gopherjs build -m -o public/tgo.js gopherjs/tgo.go
 
-public/sw.js:
-	workbox generateSW workbox-config.js
+public/sw.js: $(ALL_ICONS) public/index.html public/tgo.js
+	npm run build
