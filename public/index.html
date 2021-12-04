@@ -88,7 +88,7 @@
         prompt("URL to share this template", url);
     }
 
-    function shareTemplate() {
+    function shareTemplate(event) {
         const raw = JSON.stringify({t: ttemplate.value, d: tdata.value})
         const [data, error] = window.compress(raw);
         if (error != "") {
@@ -97,7 +97,7 @@
         }
         window.location.hash = `d:${data}`;
         const url = window.location.toString();
-        if (navigator.hasOwnProperty("share")) {
+        if (navigator.share) {
             try {
                 navigator.share({
                     title: 'Go Text Template Playground',
