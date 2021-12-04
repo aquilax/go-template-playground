@@ -84,6 +84,10 @@
         terror.value = error;
     };
 
+    function shareFallback(url) {
+        prompt("URL to share this template", url);
+    }
+
     function shareTemplate() {
         const raw = JSON.stringify({t: ttemplate.value, d: tdata.value})
         const [data, error] = window.compress(raw);
@@ -92,7 +96,22 @@
             return
         }
         window.location.hash = `d:${data}`;
-        prompt("URL to share this template", window.location);
+        const url = window.location.toString();
+        if (navigator.hasOwnProperty("share")) {
+            try {
+                navigator.share({
+                    title: 'Go Text Template Playground',
+                    text: 'Go Text Template Playground',
+                    url: url,
+                }).catch(e => {
+                    shareFallback(url);
+                });
+            } catch(_) {
+                shareFallback(url);
+            }
+        } else {
+            shareFallback(url);
+        }
     }
 
     function loadFromHash(hash) {
