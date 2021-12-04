@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script src="tgo.js"></script>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Go Text Template Playground</title>
     <style>
+        body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'}
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
         }
         h2 {margin-bottom: 0;}
-        textarea {width: 98%; height : 20em}
+        textarea {width: 98%; height : 20em; background: #ffffdd;}
         #error { background: rgba(255, 0, 0, .10)}
+        #output { background: #f7f9fa}
     </style>
 </head>
 <body>
@@ -20,27 +24,30 @@
     <hr/>
     <main class="grid">
         <div class="panel">
-            <h2>JSON</h2>
-            <textarea id="data" placeholder="JSON encoded data">{"name": "Go Text Template Playground"}</textarea>
-        </div>
-        <div class="panel">
             <h2>Template</h2>
             <textarea id="template" placeholder="Go text template">{{ .name }} is great</textarea>
         </div>
         <div class="panel">
+            <h2>JSON data</h2>
+            <textarea id="data" placeholder="JSON encoded data">{"name": "Go Text Template Playground"}</textarea>
+        </div>
+        <div class="panel">
             <h2>Output</h2>
-            <textarea id="output" placeholder="Output"></textarea>
+            <textarea id="output"></textarea>
         </div>
         <div class="panel">
             <h2>Errors</h2>
-            <textarea id="error" placeholder="Errors" readonly></textarea>
+            <textarea id="error" readonly></textarea>
         </div>
     </main>
     <hr/>
     <footer>
+        <p><a href="https://go-template-playground.writtn.com/">Go Text Template Playground</a> is a sandbox for quick go text templates prototyping.</p>
         Source code: <a href="https://github.com/aquilax/go-template-playground">https://github.com/aquilax/go-template-playground</a>
     </footer>
+<script src="tgo.js"></script>
 <script>
+    window.renderTemplate = window.renderTemplate || function () { return ['', 'Loading...'] };
     const ttemplate = document.getElementById('template');
     const tdata = document.getElementById('data');
     const toutput = document.getElementById('output');
