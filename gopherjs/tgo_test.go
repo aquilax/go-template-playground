@@ -36,3 +36,24 @@ func Test_render(t *testing.T) {
 		})
 	}
 }
+
+func Test_compress_decompress(t *testing.T) {
+	t.Run("test compress/decompress", func(t *testing.T) {
+		input := `{"test": "data"}`
+		compressed := "qlYqSS0uUbJSUEpJLElUqgUEAAD__w"
+		comp, err := compress(input)
+		if err != "" {
+			t.Errorf("got compress error = %s", err)
+		}
+		if comp != compressed {
+			t.Errorf("got compressed = %s, want %s", comp, compressed)
+		}
+		result, err := decompress(comp)
+		if err != "" {
+			t.Errorf("got decompress error = %s", err)
+		}
+		if input != result {
+			t.Errorf("got = %s, want %s", result, input)
+		}
+	})
+}

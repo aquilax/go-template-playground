@@ -6,6 +6,9 @@
     <title>Go Text Template Playground</title>
     <style>
         body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'}
+        header {display: flex}
+        .extra {display:grid; margin: auto;}
+        header h1 {flex-grow: 1;}
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -20,6 +23,9 @@
 <body>
     <header>
         <h1>Go Text Template Playground</h1>
+        <div class="extra">
+            <button id="share">Share</button>
+        </div>
     </header>
     <hr/>
     <main class="grid">
@@ -52,6 +58,7 @@
     const tdata = document.getElementById('data');
     const toutput = document.getElementById('output');
     const terror = document.getElementById('error');
+    const tshare = document.getElementById('share');
 
     function process() {
         const [output, error] = window.renderTemplate(ttemplate.value, tdata.value)
@@ -59,8 +66,36 @@
         terror.value = error;
     };
 
+    function shareTemplate() {
+        const raw = JSON.stringify({t: ttemplate.value, d: tdata.value})
+        const [data, error] = window.compress(raw);
+        if (error != "") {
+            terror.value = error
+            return
+        }
+        window.location.hash = `d:${data}`;
+        prompt("URL to share this template", window.location);
+    }
+
+    function loadFromHash(hash) {
+        if (hash.startsWith('#d:')) {
+            const data = hash.slice(3)
+            const [raw, error] = window.decompress(data)
+            if (error != "") {
+                terror.value = error
+                return
+            }
+            const {t, d} = JSON.parse(raw);
+            ttemplate.value = t
+            tdata.value = d
+        }
+    }
+
     tdata.addEventListener('input', process);
     ttemplate.addEventListener('input', process);
+    tshare.addEventListener('click', shareTemplate)
+    loadFromHash(window.location.hash || '')
+
     process();
 </script>
 </body>
