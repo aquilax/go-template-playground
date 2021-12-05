@@ -5,7 +5,7 @@ SHELL := /bin/bash
 SRC_IMG = ./raw
 BUILD = ./public
 BUILD_IMAGES = $(BUILD)/images
-resolutions := 192 512
+resolutions := 16 32 180 192 512
 ALL_ICONS := $(foreach resolution, $(resolutions), $(BUILD_IMAGES)/icons-$(resolution).png)
 
 all: icons public/tgo.js public/sw.js

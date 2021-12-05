@@ -4,8 +4,11 @@
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>Go Text Template Playground</title>
-    <link rel="manifest" href="/manifest.json">
     <link rel="canonical" href="https://go-template-playground.writtn.com/" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons-180.png">
     <style>
         body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'}
         header {display: flex}
@@ -31,6 +34,11 @@
 
     gtag('config', 'UA-59829770-32');
     </script>
+    <meta property="og:title" content="Go Text Template Playground">
+    <meta property="og:url" content="https://go-template-playground.writtn.com/">
+    <meta property="og:description" content="Sandbox for quick go text templates prototyping.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://go-template-playground.writtn.com/images/icons-512.png">
 </head>
 <body>
     <header>
@@ -105,7 +113,9 @@
                     text: 'Go Text Template Playground',
                     url: url,
                 }).catch(e => {
-                    shareFallback(url);
+                    if (e.name !== 'AbortError') {
+                        shareFallback(url);
+                    }
                 });
             } catch(_) {
                 shareFallback(url);

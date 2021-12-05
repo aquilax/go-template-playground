@@ -23,6 +23,6 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#ffffdd",
+  "theme_color": "#ffffff",
   "description": "Go Text Template Playground is a sandbox for quick go text templates prototyping."
 }
