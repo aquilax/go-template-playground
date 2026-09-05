@@ -71,7 +71,7 @@
         <p><a href="https://go-template-playground.writtn.com/">Go Text Template Playground</a> is a sandbox for quick go text templates prototyping.</p>
         Source code: <a href="https://github.com/aquilax/go-template-playground">https://github.com/aquilax/go-template-playground</a>
     </footer>
-<script src="tgo.js"></script>
+<script src="wasm_exec.js"></script>
 <script>
 
     if ('serviceWorker' in navigator) {
@@ -142,7 +142,15 @@
     tdata.addEventListener('input', process);
     ttemplate.addEventListener('input', process);
     tshare.addEventListener('click', shareTemplate)
-    loadFromHash(window.location.hash || '')
+
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("tgo.wasm"), go.importObject).then((result) => {
+        go.run(result.instance);
+        loadFromHash(window.location.hash || '');
+        process();
+    }).catch(err => {
+        terror.value = "Failed to load WebAssembly: " + err;
+    });
 
     process();
 </script>
